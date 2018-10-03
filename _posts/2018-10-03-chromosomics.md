@@ -5,4 +5,5 @@ title: chromosomics.md
 ---
 ## I have a ham radio
 
-Chromosomics
+Chromosomics is not a real field
+
