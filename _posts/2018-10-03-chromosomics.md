@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: chromosomics.md
 ---
 ## I have a ham radio
