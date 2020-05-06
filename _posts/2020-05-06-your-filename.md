@@ -11,7 +11,7 @@ To display these values on top of a multiple sequence alignment is difficult, si
 
 Difficulties and limitations: take care that the names of the proteins in both files are the same; all periods in the names are converted to underscores and are truncated at 15 characters. If this collapses different protein names into the same name, the results will not be good.
 
-```python
+
 import json
 import argparse
 
@@ -100,4 +100,3 @@ def main():
 
 if __name__=="__main__":
     main()
-```
