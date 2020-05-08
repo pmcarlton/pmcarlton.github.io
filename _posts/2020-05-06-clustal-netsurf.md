@@ -18,8 +18,8 @@ import argparse
 def getjson(jsonfilename):
     jsonfile=open(jsonfilename)
     dat=json.load(jsonfile);jsonfile.close()
-    q8={x['id'][5:20]:x['q8'] for x in dat}
-    disorder={x['id'][5:20]:x['disorder'] for x in dat}
+    q8={x['id'][5:]:x['q8'] for x in dat}
+    disorder={x['id'][5:]:x['disorder'] for x in dat}
     return(q8,disorder)
 
 def cluprint(clufilename,q8,disorder):
@@ -69,7 +69,7 @@ Magenta: C (coil)
         except:
             name=""
         if name in q8.keys():
-            spc=" "*(20-len(name))
+            spc=" "*(40-len(name))
             print(name,spc,end="")
             for char in splitline[1]:
                 if(char != "-"):
