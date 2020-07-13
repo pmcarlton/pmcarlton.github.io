@@ -15,11 +15,15 @@ Difficulties and limitations: take care that the names of the proteins in both f
 import json
 import argparse
 
+# you might want to preprocess the clustal file with the following to get each 
+# record on one line:
+# perl -ane '$h{$F[0]}.=$F[1];if(eof){for $key(keys %h) {print $key," "x(40-(length($key))),$h{$key},"\n"}};' ORIGINAL.clu | grep -v CLUSTAL > ONELINEEACH.clu
+
 def getjson(jsonfilename):
     jsonfile=open(jsonfilename)
     dat=json.load(jsonfile);jsonfile.close()
-    q8={x['id'][5:]:x['q8'] for x in dat}
-    disorder={x['id'][5:]:x['disorder'] for x in dat}
+    q8={x['id'][5:35]:x['q8'] for x in dat}
+    disorder={x['id'][5:35]:x['disorder'] for x in dat}
     return(q8,disorder)
 
 def cluprint(clufilename,q8,disorder):
@@ -32,11 +36,11 @@ def cluprint(clufilename,q8,disorder):
 <style>
 .G { color: red !important; }
 .H { color: orange !important; }
-.I { color: yellow !important; }
+.I { color: brown !important; }
 .T { color: green !important; }
 .E { color: blue !important; }
 .B { color: purple !important; }
-.S { color: gray50 !important; }
+.S { color: darkturquoise !important; }
 .C { color: fuchsia !important; }
 </style>
 
@@ -47,16 +51,16 @@ def cluprint(clufilename,q8,disorder):
 <h1>Clustal-Netsurf</h1>
 <pre>
 Color code (for q8):
-Red: G (3-turn helix)
-Orange: H (4-turn helix)
-Yellow: I (5-turn helix)
-Green: T (hydrogen-bonded turn)
-Blue: E (extended strand in parallel and/or antiparallel beta-sheet)
-Purple: B (residue in isolated beta-bridge)
-Gray: S (bend)
-Magenta: C (coil)
+<span class=G>Red: G (3-turn helix)</span>
+<span class=H>Orange: H (4-turn helix)</span>
+<span class=I>Brown: I (5-turn helix)</span>
+<span class=T>Green: T (hydrogen-bonded turn)</span>
+<span class=E>Blue: E (extended strand in parallel and/or antiparallel beta-sheet)</span>
+<span class=B>Purple: B (residue in isolated beta-bridge)</span>
+<span class=S>Darkturquoise: S (bend)</span>
+<span class=C>Magenta: C (coil)</span>
 
-- Magenta background gradient correlates with higher disorder parameter
+- Magenta background strength correlates with higher disorder parameter
 
     ''')
     count={x:0 for x in q8.keys()}
@@ -80,8 +84,9 @@ Magenta: C (coil)
                 else:
                     print(char,end="")
             print()
-        else:
-            print("    ",line)
+#        else:
+#            print("xx_xx",line)
+            #print("    ",line)
     print('''
     </pre>
     </body>
@@ -100,4 +105,5 @@ def main():
 
 if __name__=="__main__":
     main()
+
 ```
