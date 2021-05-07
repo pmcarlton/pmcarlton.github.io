@@ -1,0 +1,9 @@
+Synteny between _C. elegans_ and _C. inopinata_
+
+Workflow:
+
+- use blastp to find mutual best matches betweeen C. elegans and C. inopinata proteins
+- find the genomic locations of the coding regions from both species from their genome annotation files
+- plot the normalized position of each protein whose genes are on the same chromosome in both species
+
+[image](image)
